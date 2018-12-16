@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "squel": "^5.12.2",
+    "swagger": "^0.7.5",
+    "swagger2-koa": "^1.0.3"
+  }
+}
