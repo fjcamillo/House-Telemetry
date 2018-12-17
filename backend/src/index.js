@@ -17,7 +17,7 @@ for (const route of [
 }
 
 const spec = swagger.loadDocumentSync("src/swagger.yml")
-if(!swaggerValidate(spec)){
+if(!swagger.validateDocument(spec)){
     throw Error("Please fix your swagger file")
 }
 
@@ -25,7 +25,7 @@ router.get('/explorer', ctx => {
     ctx.body = spec
     ctx.status = 200
 })
-
+app.use(swaggerUI(spec, '/explorer'))
 app.use(bodyParser())
 app.use(router.routes())
 app.use(router.allowedMethods())
