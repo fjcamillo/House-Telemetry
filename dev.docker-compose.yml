@@ -2,3 +2,12 @@ version: "3"
 services:
   postgres:
     image: postgres:10-alpine
+  backend:
+    build:
+      context: ${PWD}/backend
+      Dockerfile: ${PWD}/backend/dev.Dockerfile
+    environment:
+      BACKEND_URI: 3500
+    ports:
+      - "3500:3500"
+    command: "yarn start:dev"
