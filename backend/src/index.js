@@ -1,5 +1,6 @@
 import Koa from 'koa'
 import Router from 'koa-router'
+import bodyParser from 'koa-bodyparser'
 import * as swagger from 'swagger'
 import {validate as swaggerValidate, ui as swaggerUI } from 'swagger2-koa'
 
@@ -15,7 +16,7 @@ for (const route in [
     router(router)
 }
 
-
+app.use(bodyParser())
 app.use(router.route())
-app.use(router.all)
+app.use(router.allowedMethods())
 app.listen(3500, console.log('running at 3500'))

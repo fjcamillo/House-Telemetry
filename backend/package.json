@@ -8,8 +8,13 @@
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "nodemon": "^1.18.9",
     "squel": "^5.12.2",
     "swagger": "^0.7.5",
     "swagger2-koa": "^1.0.3"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "nodemon --inspect src/index.js"
   }
 }

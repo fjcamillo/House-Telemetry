@@ -1,0 +1,54 @@
+swagger: '2.0'
+info:
+  description: "House Sensing Project"
+  version: "1.0.0"
+  title: "House Sensing Project"
+  termsOfService: ""
+host: "localhost"
+paths:
+  "/sensor/pir":
+    get:
+      description: Retrieves all pir sensor data
+      operationId: retrievePIR
+      tags:
+        - Sensors
+      responses:
+        200:
+          description: All PIR Sensor retrieved successfully
+          schema:
+            $ref: "#/definitions/sensorPIRBase"
+        400:
+          description: Unauthenticated User
+          schema:
+            $ref: "#/definitions/unauthenticatedResponse"
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/defaultResponse'
+    post:
+      description: Create new PIR data
+      operationId: createPIR
+      tags:
+        - Sensors
+      responses:
+        200:
+          description: Created new PIR data
+          schema:
+            $ref: '#/definitions/createPIRBase'
+        400:
+          description: Unauthenticated User
+          schema:
+            $ref: "#/definitions/unauthenticatedResponse"
+        default:
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/defaultResponse'
+definitions:
+  sensorPIRBase:
+    type: object
+  createPIRBase:
+    type: object
+  unauthenticatedResponse:
+    type: object
+  defaultResponse:
+    type: object
