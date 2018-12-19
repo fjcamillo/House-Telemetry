@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   title: "House Sensing Project"
   termsOfService: ""
-host: "localhost"
+host: "localhost:3500"
 paths:
   "/sensor/pir":
     get:
@@ -30,6 +30,10 @@ paths:
       operationId: createPIR
       tags:
         - Sensors
+      parameters:
+        - in: query
+          name: reading
+          type: integer
       responses:
         200:
           description: Created new PIR data

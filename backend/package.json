@@ -17,6 +17,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "nodemon": "^1.18.9",
+    "pg": "^7.7.1",
     "squel": "^5.12.2",
     "swagger2-koa": "^1.0.3"
   },
