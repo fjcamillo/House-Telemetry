@@ -1,18 +1,18 @@
-version: "3"
+version: "2"
 services:
   postgres:
     image: postgres:9.6-alpine
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWOR: test
+      POSTGRES_PASSWORD: test
       POSTGRES_USER: test
-      POSTGRES_DB: sensor
-
+    volumes:
+      - ./backend/src/queries/create.sql:/docker-entrypoint-initdb.d/create.sql
   backend:
     build:
       context: ${PWD}/backend
-      Dockerfile: ${PWD}/backend/dev.Dockerfile
+      dockerfile: ${PWD}/backend/dev.Dockerfile
     environment:
       BACKEND_URI: 3500
     ports:
