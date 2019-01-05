@@ -1,7 +1,14 @@
 version: "3"
 services:
   postgres:
-    image: postgres:10-alpine
+    image: postgres:9.6-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWOR: test
+      POSTGRES_USER: test
+      POSTGRES_DB: sensor
+
   backend:
     build:
       context: ${PWD}/backend
