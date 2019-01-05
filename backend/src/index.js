@@ -25,8 +25,9 @@ router.get('/explorer', ctx => {
     ctx.body = spec
     ctx.status = 200
 })
-app.use(swaggerUI(spec, '/explorer'))
+
 app.use(bodyParser())
 app.use(router.routes())
+app.use(swaggerUI(spec, '/explorer'))
 app.use(router.allowedMethods())
 app.listen(3500, console.log('running at 3500'))
