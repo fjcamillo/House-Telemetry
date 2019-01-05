@@ -13,5 +13,9 @@ export function routes(router){
                 sensor_type: "PIR",
                 reading: parseInt(ctx.query.reading) || "None"
             })
+            ctx.status = 200
+            ctx.body = {
+                ...res
+            }
         })
 }

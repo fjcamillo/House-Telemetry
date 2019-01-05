@@ -50,6 +50,11 @@ paths:
 definitions:
   sensorPIRBase:
     type: object
+    properties:
+      sensor_type:
+        type: string
+      reading:
+        type: number
   createPIRBase:
     type: object
   unauthenticatedResponse:
