@@ -17,4 +17,6 @@ services:
       BACKEND_URI: 3500
     ports:
       - "3500:3500"
+    volumes:
+      - ${PWD}/backend:/app
     command: "yarn start:dev"
