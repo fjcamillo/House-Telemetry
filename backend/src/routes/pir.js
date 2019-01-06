@@ -1,21 +1,29 @@
-import { create, retrieve } from '../models/entrance'
-import { postgres } from '../models/index'
+import { create, filterByType, filterById, retrieveAll} from '../models/sensors'
+import {connect} from '../postgres'
 
 export function routes(router){
     router
-        .post('/sensor/pir', async ctx => {
-            debugger;
-            console.log(ctx.query)
-            const res = await create(postgres(), {
-                created_at: new Date(),
-                updated_at: new Date(),
+        .post('/sensors', async ctx => {
+            const res = await create(connect(ctx), {
+                created_at: new Date().getTime(),
+                updated_at: new Date().getTime(),
                 deleted: false,
                 sensor_type: "PIR",
-                reading: parseInt(ctx.query.reading) || "None"
+                reading: parseInt(ctx.query.reading) || -1
             })
             ctx.status = 200
             ctx.body = {
                 ...res
             }
+        })
+        .get('/sensors', async ctx => {
+            const res = await retrieveAll(connect(ctx))
+            ctx.status = 200
+            ctx.body = res
+        })
+        .get('/sensors/{id}', async ctx => {
+            const res = await filterById(connect(ctx), ctx.query.id)
+            ctx.status = 200
+            ctx.body = res
         })
 }
