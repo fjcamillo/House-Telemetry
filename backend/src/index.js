@@ -21,7 +21,7 @@ if(!swagger.validateDocument(spec)){
     throw Error("Please fix your swagger file")
 }
 
-router.get('/explorer', ctx => {
+router.get('/swagger.json', ctx => {
     ctx.body = spec
     ctx.status = 200
 })

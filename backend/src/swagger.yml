@@ -5,6 +5,7 @@ info:
   title: "House Sensing Project"
   termsOfService: ""
 host: "localhost:3500"
+basePath: "/"
 paths:
   "/sensor/pir":
     get:
