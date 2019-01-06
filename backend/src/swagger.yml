@@ -49,6 +49,50 @@ paths:
           description: Internal Error
           schema:
             $ref: '#/definitions/defaultResponse'
+  '/sensors/{id}':
+    get:
+      description: Retrieves Sensor using Id
+      operationId: retrieveSensorById
+      tags:
+        - Sensors
+      parameters:
+        - in: path
+          required: true
+          name: id
+          type: integer
+      responses:
+        200:
+          description: Succesfully retrieved sensor
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/sensorPIRBase"
+        default:
+          description: Internal Error
+          schema:
+            $ref: "#/definitions/defaultResponse"
+  '/sensors/{type}/type':
+    get:
+      description: Retrieves All sensors according to the given Sensor Type
+      operationId: retrieveSensorByType
+      tags:
+        - Sensors
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: type
+      responses:
+        200:
+          description: Successfully retrieves type
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/sensorPIRBase"
+        default:
+          description: Internal Error
+          schema:
+            $ref: "#/definitions/defaultResponse"
 definitions:
   sensorPIRBase:
     type: object
