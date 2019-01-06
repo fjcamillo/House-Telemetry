@@ -7,7 +7,7 @@ info:
 host: "localhost:3500"
 basePath: "/"
 paths:
-  "/sensor/pir":
+  "/sensors":
     get:
       description: Retrieves all pir sensor data
       operationId: retrievePIR
@@ -33,6 +33,7 @@ paths:
         - Sensors
       parameters:
         - in: query
+          required: true
           name: reading
           type: integer
       responses:
