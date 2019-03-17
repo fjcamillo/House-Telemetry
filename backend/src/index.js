@@ -5,6 +5,7 @@ import * as swagger from 'swagger2'
 import {validate as swaggerValidate, ui as swaggerUI } from 'swagger2-koa'
 import { dbConnection } from './postgres'
 import cors from '@koa/cors'
+import config from './config'
 
 const origin = "*"
 
@@ -36,4 +37,4 @@ app.use(cors({origin}, spec))
 app.use(router.routes())
 app.use(swaggerUI(spec, '/explorer'))
 app.use(router.allowedMethods())
-app.listen(3500, console.log('running at 3500'))
+app.listen(config.BACKEND_PORT, console.log(`running at ${config.BACKEND_PORT}`))
