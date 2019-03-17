@@ -26,7 +26,7 @@ export function routes(router){
             ctx.status = 200
             ctx.body = res
         })
-        .get('/sensors/{type}/type', async ctx => {
+        .get('/sensors-type/{type}', async ctx => {
             const res = await filterByType(connect(ctx), ctx.query.type)
             ctx.status = 200
             ctx.body = res

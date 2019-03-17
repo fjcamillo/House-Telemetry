@@ -49,7 +49,7 @@ paths:
           description: Internal Error
           schema:
             $ref: '#/definitions/defaultResponse'
-  '/sensors/{id}':
+  "/sensors/{id}":
     get:
       description: Retrieves Sensor using Id
       operationId: retrieveSensorById
@@ -71,7 +71,7 @@ paths:
           description: Internal Error
           schema:
             $ref: "#/definitions/defaultResponse"
-  '/sensors/{type}/type':
+  "/sensors-type/{type}":
     get:
       description: Retrieves All sensors according to the given Sensor Type
       operationId: retrieveSensorByType
