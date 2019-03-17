@@ -15,8 +15,19 @@ services:
       dockerfile: ${PWD}/backend/dev.Dockerfile
     environment:
       BACKEND_URI: 3500
+      VIRTUAL_HOST: api.fjcamillo.com
     ports:
       - "3500:3500"
     volumes:
       - ${PWD}/backend:/app
     command: "yarn start:dev"
+  nginx:
+    image: jwilder/nginx-proxy
+    volumes:
+    - "/etc/nginx/vhost.d"
+    - "/usr/share/nginx/html"
+    - "/var/run/docker.sock:/tmp/docker.sock:ro"
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
