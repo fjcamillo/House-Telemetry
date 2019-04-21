@@ -1,4 +1,4 @@
-version: "2"
+version: "3.5"
 services:
   postgres:
     image: postgres:9.6-alpine
@@ -7,6 +7,8 @@ services:
       POSTGRES_USER: test
     volumes:
       - ./backend/src/queries/create.sql:/docker-entrypoint-initdb.d/create.sql
+    networks:
+      - fjcamillo_network
   nginx:
     image: jwilder/nginx-proxy
     volumes:
@@ -16,11 +18,15 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - fjcamillo_network
   redis:
     image: redis:5.0.4-alpine
     volumes:
       - /app/redis/:/data
+    networks:
+      - fjcamillo_network
 
 networks:
   fjcamillo_network:
-    name: fjcamillo_network
+    name: fjcamillo_networks
