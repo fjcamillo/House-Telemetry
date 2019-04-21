@@ -29,6 +29,11 @@ services:
     networks:
       - fjcamillo_network
       - shella_network
+  certbot:
+    image: certbot/certbot
+    networks:
+      - fjcamillo_network
+      - shella_network
 
 networks:
   fjcamillo_network:
