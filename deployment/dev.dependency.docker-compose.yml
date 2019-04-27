@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
       POSTGRES_USER: "${DATABASE_USER}"
     volumes:
-      - ./backend/src/queries/create.sql:/docker-entrypoint-initdb.d/create.sql
+      - ./../backend/src/queries/create.sql:/docker-entrypoint-initdb.d/create.sql
     networks:
       - fjcamillo_network
       - shella_network
@@ -15,10 +15,14 @@ services:
     volumes:
       - "/usr/share/nginx/html"
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/etc/nginx/vhost.d"
     restart: always
     ports:
       - "80:80"
       - "443:443"
+    # volumes:
+    #   - ./data/certbot/conf:/etc/letsencrypt
+    #   - ./data/certbot/www:/var/www/certbot
     networks:
       - fjcamillo_network
       - shella_network
@@ -29,11 +33,14 @@ services:
     networks:
       - fjcamillo_network
       - shella_network
-  certbot:
-    image: certbot/certbot
-    networks:
-      - fjcamillo_network
-      - shella_network
+  # certbot:
+  #   image: certbot/certbot
+  #   networks:
+  #     - fjcamillo_network
+  #     - shella_network
+  #   volumes:
+  #     - ./data/certbot/conf:/etc/letsencrypt
+  #     - ./data/certbot/www:/var/www/certbot
 
 networks:
   fjcamillo_network:
