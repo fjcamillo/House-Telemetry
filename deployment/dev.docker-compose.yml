@@ -1,0 +1,16 @@
+version: "2"
+services:
+  backend:
+    build:
+      context: ${PWD}/backend
+      dockerfile: ${PWD}/backend/dev.Dockerfile
+    environment:
+      BACKEND_URI: ${BACKEND_PORT}
+      VIRTUAL_HOST: dev-api.fjcamillo.com
+    ports:
+      - "3500:3500"
+    volumes:
+      - ${PWD}/backend:/app
+    command: "yarn start:dev"
+    networks:
+      - fjcamillo_network
