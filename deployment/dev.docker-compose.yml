@@ -5,8 +5,13 @@ services:
       context: ${PWD}/../backend
       dockerfile: ${PWD}/../backend/dev.Dockerfile
     environment:
-      BACKEND_PORT: ${BACKEND_PORT}
-      BACKEND_URI: ${BACKEND_URI}
+      BACKEND_PORT: 3500
+      BACKEND_URI: dev-api.fjcamillo.com
+      DATABASE_USER: test
+      DATABASE_PASSWORD: test
+      DATABASE_HOST: postgres
+      DATABASE_NAME: house
+      DATABASE_PORT: 5432
       VIRTUAL_HOST: dev-api.fjcamillo.com
     ports:
       - "3500:3500"
