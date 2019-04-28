@@ -1,22 +1,26 @@
-version: "2"
+version: "3"
 services:
-  postgres:
-    image: postgres:9.6-alpine
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: test
-      POSTGRES_USER: test
-    volumes:
-      - ./../backend/src/queries/create.sql:/docker-entrypoint-initdb.d/create.sql
   backend:
     build:
       context: ${PWD}/../backend
       dockerfile: ${PWD}/../backend/dev.Dockerfile
     environment:
-      BACKEND_URI: 3500
+      BACKEND_PORT: ${BACKEND_PORT}
+      BACKEND_URI: ${BACKEND_URI}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_PORT: ${DATABASE_PORT}
+      VIRTUAL_HOST: ${BACKEND_URI}
     ports:
       - "3500:3500"
     volumes:
       - ${PWD}/../backend:/app
     command: "yarn start:dev"
+    # networks:
+    
+networks:
+  default:
+    external:
+      name: fjcamillo_networks
