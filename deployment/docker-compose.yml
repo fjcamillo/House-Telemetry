@@ -7,7 +7,12 @@ services:
     environment:
       BACKEND_PORT: ${BACKEND_PORT}
       BACKEND_URI: ${BACKEND_URI}
-      VIRTUAL_HOST: dev-api.fjcamillo.com
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_PORT: ${DATABASE_PORT}
+      VIRTUAL_HOST: ${BACKEND_URI}
     ports:
       - "3500:3500"
     volumes:
