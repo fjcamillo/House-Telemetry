@@ -1,30 +1,26 @@
-version: "2"
+version: "3"
 services:
-  postgres:
-    image: postgres:9.6-alpine
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: test
-      POSTGRES_USER: test
-    volumes:
-      - ./../backend/src/queries/create.sql:/docker-entrypoint-initdb.d/create.sql
   backend:
     build:
       context: ${PWD}/../backend
       dockerfile: ${PWD}/../backend/dev.Dockerfile
     environment:
-      BACKEND_URI: 3500
+      BACKEND_PORT: 3500
+      BACKEND_URI: dev-api.fjcamillo.com
+      DATABASE_USER: test
+      DATABASE_PASSWORD: test
+      DATABASE_HOST: postgres
+      DATABASE_NAME: house
+      DATABASE_PORT: 5432
+      VIRTUAL_HOST: dev-api.fjcamillo.com
     ports:
       - "3500:3500"
     volumes:
       - ${PWD}/../backend:/app
     command: "yarn start:dev"
-  nginx:
-    volumes: 
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - "3500:3500"
-      - "443:443"
+    # networks:
+    
 networks:
-  telemetry_network:
+  default:
+    external:
+      name: fjcamillo_networks

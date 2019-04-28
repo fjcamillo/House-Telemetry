@@ -5,7 +5,7 @@ import * as swagger from 'swagger2'
 import {validate as swaggerValidate, ui as swaggerUI } from 'swagger2-koa'
 import { dbConnection } from './postgres'
 import cors from '@koa/cors'
-import config from './config'
+import {config} from './config'
 
 const origin = "*"
 
