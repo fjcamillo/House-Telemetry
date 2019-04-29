@@ -35,7 +35,16 @@ paths:
         - in: query
           required: true
           name: reading
-          type: integer
+          type: number
+          format: float
+        - in: query
+          required: true
+          name: sensor_type
+          type: string
+          enum:
+            - PIR
+            - TEMPERATURE
+            - CARBON_DIOXIDE
       responses:
         200:
           description: Created new PIR data
