@@ -6,6 +6,7 @@ import {validate as swaggerValidate, ui as swaggerUI } from 'swagger2-koa'
 import { dbConnection } from './postgres'
 import cors from '@koa/cors'
 import {config} from './config'
+import logger from 'koa-logger'
 
 const origin = "*"
 
@@ -13,6 +14,7 @@ import { routes as sensorRoutes } from './routes/sensors'
 
 
 const app = new Koa()
+    .use(logger())
 const router  = new Router()
 
 for (const route of [
@@ -32,9 +34,10 @@ router.get('/swagger.json', ctx => {
 })
 
 app.use(dbConnection())
-app.use(bodyParser())
-app.use(cors({origin}, spec))
-app.use(router.routes())
-app.use(swaggerUI(spec, '/explorer'))
-app.use(router.allowedMethods())
+    .use(bodyParser())
+    .use(cors({origin}, spec))
+    .use(router.routes())
+    .use(swaggerUI(spec, '/explorer'))
+    .use(router.allowedMethods())
+    
 app.listen(config.BACKEND_PORT, console.log(`running at ${config.BACKEND_PORT}`))
