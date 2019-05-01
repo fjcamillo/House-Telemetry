@@ -7,6 +7,7 @@ import { dbConnection } from './postgres'
 import cors from '@koa/cors'
 import {config} from './config'
 
+// @TODO: Change Origin
 const origin = "*"
 
 import { routes as sensorRoutes } from './routes/sensors'
@@ -25,7 +26,7 @@ const spec = swagger.loadDocumentSync("src/swagger.yml")
 if(!swagger.validateDocument(spec)){
     throw Error("Please fix your swagger file")
 }
-
+f
 router.get('/swagger.json', ctx => {
     ctx.body = spec
     ctx.status = 200

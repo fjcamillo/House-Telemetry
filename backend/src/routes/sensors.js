@@ -1,6 +1,10 @@
 import { create, filterByType, filterById, retrieveAll} from '../models/sensors'
 import {connect} from '../postgres'
 
+/**
+ * 
+ * @param {router} router | Middleware Router
+ */
 export function routes(router){
     router
         .post('/sensors', async ctx => {

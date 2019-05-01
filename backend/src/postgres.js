@@ -2,6 +2,9 @@ import { Client } from 'pg'
 import {config} from './config'
 
 
+/**
+ * Starts DB Connection
+ */
 export function dbConnection(){
     return async (ctx, next) => {
         const client = new Client({
@@ -11,11 +14,15 @@ export function dbConnection(){
             database:config.DATABASE_NAME,
             port: config.DATABASE_PORT
         })
-        ctx._connection = client
+        ctx._connect = client
         await next()
     }
 }
 
+/**
+ * 
+ * @param {*} ctx 
+ */
 export function connect(ctx){
-    return ctx._connection
+    return ctx._connect
 }
