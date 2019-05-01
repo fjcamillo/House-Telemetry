@@ -12,7 +12,7 @@ export function routes(router){
                 created_at: new Date().getTime(),
                 updated_at: new Date().getTime(),
                 deleted: false,
-                sensor_type: "PIR",
+                sensor_type: ctx.query.sensor_type,
                 reading: parseInt(ctx.query.reading) || -1
             })
             ctx.status = 200
