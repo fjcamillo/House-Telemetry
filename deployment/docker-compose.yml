@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: ${PWD}/../backend
-      dockerfile: ${PWD}/../backend/dev.Dockerfile
+      dockerfile: ${PWD}/../backend/Dockerfile
     environment:
       BACKEND_PORT: ${BACKEND_PORT}
       BACKEND_URI: ${BACKEND_URI}
