@@ -28,7 +28,7 @@ const spec = swagger.loadDocumentSync("src/swagger.yml")
 if(!swagger.validateDocument(spec)){
     throw Error("Please fix your swagger file")
 }
-f
+
 router.get('/swagger.json', ctx => {
     ctx.body = spec
     ctx.status = 200

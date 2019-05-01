@@ -25,13 +25,13 @@ export function routes(router){
             ctx.status = 200
             ctx.body = res
         })
-        .get('/sensors/{id}', async ctx => {
-            const res = await filterById(connect(ctx), ctx.query.id)
+        .get('/sensors/:id', async ctx => {
+            const res = await filterById(connect(ctx), ctx.params.id)
             ctx.status = 200
             ctx.body = res
         })
-        .get('/sensors-type/{type}', async ctx => {
-            const res = await filterByType(connect(ctx), ctx.query.type)
+        .get('/sensors-type/:type', async ctx => {
+            const res = await filterByType(connect(ctx), ctx.params.type)
             ctx.status = 200
             ctx.body = res
         })
